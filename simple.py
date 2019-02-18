@@ -40,15 +40,23 @@ def save_response_content(response, destination):
 
 os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 
-input_dir = 'simple_test/input.tiff'
-output_dir = 'simple_test/output.png'
+input_dir = './result/simple_test/input.tiff'
+output_dir = './result/simple_test/output.png'
 checkpoint_dir = './checkpoint/'
 
-if not os.path.isdir('simple_test'):
-    os.makedirs('simple_test')
+if not os.path.isfile('./result/simple_test/input.tiff'):
+    os.makedirs('./result/simple_test/')
+    print('Downloading sample image (16-bit tiff)...')
+    download_file_from_google_drive('14x1Oila4qz3DBN9pxqQ9SnG42UwaL_uB', 'result/simple_test/input.tiff')
+else:
+    print('Sample image maybe exist, skip download...')
 
-print('Downloading sample image (16-bit tiff)...')
-download_file_from_google_drive('14x1Oila4qz3DBN9pxqQ9SnG42UwaL_uB', 'simple_test/input.tiff')
+if not os.path.isfile('./checkpoint/model.ckpt.meta'):
+    print('Downloading Model... (89MB)')
+    download_file_from_google_drive('1xdw4oJbrfeV5U6YZMDCIXJxjIIa8fOhE', 'checkpoint/model.ckpt.data-00000-of-00001')
+    download_file_from_google_drive('1Pv0y04lDO0CfhGVQ6IbeeMZFysF7QRGU', 'checkpoint/model.ckpt.meta')
+else:
+    print('model maybe exist, skip download...')
 
 sess = tf.Session()
 in_image = tf.placeholder(tf.float32, [None, None, None, 3])

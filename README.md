@@ -4,6 +4,16 @@ It's a method can do low-light image processing on ordinary bitmap (png / jpeg /
 
 For better distinction, it can also be called Easy-to-See-in-the-Dark.
 
+## Quick start
+
+There is simplify test, use the command:
+
+```
+python simple.py
+```
+
+There is result in `./result/simple_test/`.
+
 ## Setup
 
 It uses the same dataset as [Learning-to-See-in-the-Dark](https://github.com/cchen156/Learning-to-See-in-the-Dark), but you need to convert raw image to tiff (16-bit per channel).
@@ -60,12 +70,10 @@ Use the following commands to test:
 python test.py
 ```
 
-*Test allocated large GPU's memory, if your GPU is not powerful enough, you can run it on CPU.*
+*Test allocated large GPU's memory, if your GPU is not powerful enough, you can run it on CPU by add:*
 
-Simplify test can do as follow (No need to download dataset):
-
-```
-python simple.py
+```python
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 ```
 
 ## Result
