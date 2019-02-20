@@ -1,6 +1,7 @@
 # Add by user
 .vscode/
-checkpoint/
+model.ckpt.data-00000-of-00001
+model.ckpt.meta
 result/
 dataset/
 
